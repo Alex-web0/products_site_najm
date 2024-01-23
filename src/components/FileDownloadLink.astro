@@ -1,0 +1,17 @@
+---
+import Icon from "astro-icon";
+
+interface Props {
+  link: string;
+}
+
+const { link } = Astro.props;
+---
+
+<a href={link} target="_blank" class="text-lg hover:opacity-60">
+  <div class="flex-row flex align-middle justify-center">
+    <div class="w-6"><Icon name="mdi:download" color="#cc0000" /></div>
+    <div class="w-2"></div>
+    <slot />
+  </div>
+</a>

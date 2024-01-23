@@ -1,0 +1,16 @@
+---
+import Container from "../components/Container.astro";
+import { getTranslationByStringLocale } from "../utils";
+import Layout from "./Layout.astro";
+
+export const prerender = true;
+
+const { frontmatter } = Astro.props;
+const t = getTranslationByStringLocale(frontmatter.locale);
+---
+
+<Layout translation={t} title={frontmatter.title}>
+  <Container makeCol={true}>
+    <div class="prose lg:prose-xl xl:prose-2xl w-full"><slot /></div>
+  </Container>
+</Layout>

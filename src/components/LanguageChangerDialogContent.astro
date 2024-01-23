@@ -1,0 +1,50 @@
+---
+const { id } = Astro.props;
+---
+
+<div id={id} class="fixed bg-slate-100 hidden py-2 z-[9999]">
+  <ul class="flex-col gap-3 flex">
+    <button id="XXX" class="hover:bg-slate-200 px-4 SET_BTN_EN"
+      ><li>ENGLISH</li></button
+    >
+    <button id="XXX" class="hover:bg-slate-200 px-4 SET_BTN_AR"
+      ><li>اللغة العربية</li></button
+    >
+    <button id="XXX" class="hover:bg-slate-200 px-4 SET_BTN_FR"
+      ><li>كوردى</li></button
+    >
+  </ul>
+</div>
+
+<script>
+  console.log(document.querySelectorAll(".SET_BTN_EN "));
+  // SET BTN EN
+  document.querySelectorAll(".SET_BTN_EN").forEach((e) =>
+    e.addEventListener(
+      "click",
+      () => {
+        localStorage.setItem("locale", "en");
+        window.location.href = "/en";
+      },
+      {
+        passive: true,
+      }
+    )
+  );
+
+  // SET BTN AR
+  document.querySelectorAll(".SET_BTN_AR ")?.forEach((e) =>
+    e.addEventListener("click", () => {
+      localStorage.setItem("locale", "ar");
+      window.location.href = "/";
+    })
+  );
+
+  // SET BTN FR
+  document.querySelectorAll(" .SET_BTN_FR ")?.forEach((e) =>
+    e.addEventListener("click", () => {
+      localStorage.setItem("locale", "kr");
+      window.location.href = "/kr";
+    })
+  );
+</script>

@@ -1,0 +1,26 @@
+---
+import type { Translation } from "../interfaces/base_translation";
+import { generateDestinationFromLocale } from "../utils";
+interface Props {
+  t: Translation;
+}
+
+const { t } = Astro.props;
+
+const homeDestination = generateDestinationFromLocale(t.locale).home;
+---
+
+<a href={homeDestination}>
+  <div class="flex flex-row align-middle">
+    <div class="w-9 sm:w-10 md:w-12 lg:w-12 xl:w-14 self-center">
+      <img src="/logo.webp" alt="Saya Logo" />
+    </div>
+    <span class="m-1 sm:m-2 md:m-3"></span>
+
+    <p
+      class="text-[1.1rem] sm:text-[1.4rem] md:text-[1.6rem] font-semibold self-center pb-[2px]"
+    >
+      {t.page_title}
+    </p>
+  </div>
+</a>

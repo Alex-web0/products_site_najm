@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+
+  image_link: string;
+}
+
+const { title, image_link } = Astro.props;
+---
+
+<div class="flex flex-start flex-col mx-2 sm:mx-3 my-4 sm:my-2">
+  <img width="96" src={image_link} alt="Hello" class="mb-2" />
+  <h3 class="text-2xl font-bold mb-4">{title}</h3>
+  <p class="text-gray-700">
+    <slot />
+  </p>
+</div>

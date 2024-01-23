@@ -1,0 +1,46 @@
+---
+import Icon from "astro-icon";
+
+interface Props {
+  label: string;
+  imageClass: string;
+  content: string;
+  href: string;
+  target?: string;
+  id?: string;
+}
+
+const { label, imageClass, content, href, target, id } = Astro.props;
+---
+
+<div
+  class="sm:w-[312px] bg-gray-100 rounded-xl relative overflow-clip py-[0.7rem] px-[0.65rem] self-center"
+>
+  <div class="flex flex-row z-20 justify-between">
+    <div class="flex flex-row">
+      <div class={imageClass + " w-14 h-14 me-2"}></div>
+
+      <div class="flex flex-col self-center">
+        <p class="font-semibold text-xl text-black pt-1">{label}</p>
+        <p class="text-gray-400">{content}</p>
+      </div>
+    </div>
+
+    <div
+      class="opacity-[0.0001] hover:opacity-100 h-full w-[55%] bg-gradient-to-l rtl:bg-gradient-to-r from-slate-800 via-slate-400/70 to-transparent transition-all absolute end-0 top-0 z-0"
+    >
+      <div class="w-8 h-8 absolute self-center top-4 bottom-4 end-3 text-white">
+        <a id={id} class="self-center" href={href} target={target ?? "_blank"}
+          ><Icon name="mdi:call-made" /></a
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- AMBIENT EFFECT -->
+  <div
+    class={imageClass +
+      " w-24 h-24 blur-[25px] opacity-40 absolute top-0 ltr:left-[-24px] rtl:right-[-24px] z-0 "}
+  >
+  </div>
+</div>

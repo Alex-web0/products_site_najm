@@ -1,0 +1,100 @@
+---
+import type { Translation } from "../interfaces/base_translation";
+import { generateDestinationFromLocale } from "../utils";
+import LanguageChanger from "./LanguageChanger.astro";
+import LanguageChangerDialogContent from "./LanguageChangerDialogContent.astro";
+import NavigationDestinations from "./NavigationDestinations.astro";
+import NavigationLogo from "./NavigationLogo.astro";
+import { Icon } from "astro-icon";
+
+
+interface Props {
+  t: Translation,
+}
+const {t} = Astro.props;
+console.log(t.locale);
+const destanationsLocalized = generateDestinationFromLocale(t.locale);
+
+---
+
+<!-- NAVIGATION SHEET -->
+<div
+  id="SITE_NAV_MENU"
+  class="fixed z-[100] h-full w-[65%] sm:w-[42%] md:w-[35%] bg-white end-0 transition-all duration-300 ease-in-out translate-x-full hidden"
+>
+  <div class="py-4 px-2 flex flex-row align-middle justify-between">
+    <p class="font-semibold text-xl self-center">Menu</p>
+    <button
+      id="CLOSE_BUTTON"
+      class="w-5 h-5 sm:w-6 sm:h-6 flex md:hidden flex-row self-center"
+    >
+      <Icon name="mdi:close" class="self-center" />
+    </button>
+  </div>
+
+  <ul class=" flex flex-col" id="MOBILE_MENU">
+    {
+      <a href={destanationsLocalized.home} class="text-lg p-2 px-3 hover:bg-gray-200">{t.home_literal}</a>
+      <a href={destanationsLocalized.activities} class="text-lg p-2 px-3 hover:bg-gray-200">{t.activities_literal}</a>
+      <a href={destanationsLocalized.contact} class="text-lg p-2 px-3 hover:bg-gray-200">{t.contact_literal}</a>
+      <a href={destanationsLocalized.donate} class="text-lg p-2 px-3 hover:bg-gray-200">{t.donate_literal}</a>
+      <div class="p-2"></div>
+      <LanguageChanger locale={t.locale} mobile={true}></LanguageChanger>
+    }
+  </ul>
+</div>
+
+<!-- NAVIGATION BAR -->
+<div class="fixed top-0 w-full z-[39]">
+  <nav class="bg-gray-50">
+    <div
+      class="flex flex-row justify-between p-2 md:py-3 max-w-screen-xl mx-auto"
+    >
+      <!-- LOGO BIG -->
+      <NavigationLogo t={t} />
+
+      <!-- Nav List BIG -->
+      <NavigationDestinations t={t}  locale={t.locale} />
+    </div>
+  </nav>
+</div>
+
+<!-- DESKTOP LANGUGAE SLEECTIOR -->
+<div>
+  <LanguageChangerDialogContent   id="LANGUAGE_SELECTION_DIALOG_DESKTOP"/>
+</div>
+
+
+<!-- CONTROL SCRIPT -->
+<script>
+  import { SITE_BLANKET, siteMapToggler } from "../utils";
+
+  console.log("sdsd");
+  const menuButton = document.getElementById("SITE_MENU_BUTTON");
+  const navigationMenu = document.getElementById("SITE_NAV_MENU");
+  const siteBlanket = document.getElementById(SITE_BLANKET);
+  const closeButton = document.getElementById("CLOSE_BUTTON");
+  const destinationLinksMobileSheet = document.querySelectorAll("#MOBILE_MENU a")
+
+  function toggleNavMenu() {
+    console.log("sdsds");
+    console.log(navigationMenu);
+    console.log(siteBlanket);
+    function toggleNav() {
+      navigationMenu?.classList.toggle("hidden");
+      setTimeout(() => {
+        navigationMenu?.classList.toggle("translate-x-full");
+      }, 20);
+    }
+
+    // TOGGlE blanket and pass it to sheet
+    toggleNav();
+    siteMapToggler(siteBlanket!, toggleNav);
+  }
+
+  menuButton?.addEventListener("click", toggleNavMenu);
+  closeButton?.addEventListener("click", toggleNavMenu);
+
+  // attach listeners to close menu after clicking on a link from mobile
+  destinationLinksMobileSheet.forEach((i) => i.addEventListener("click", toggleNavMenu));
+</script>

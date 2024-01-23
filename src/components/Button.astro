@@ -1,0 +1,23 @@
+---
+import Icon from "astro-icon";
+
+interface Props {
+  label: string;
+  id: string;
+  iconName?: string;
+}
+
+const { label, id, iconName } = Astro.props;
+---
+
+<button
+  id={id}
+  class="rounded-full px-4 py-[5px] sm:px-6 sm:py-[7px] bg-blue-600 text-white text-[13px] sm:text-sm md:text-[22px] flex flex-row align-middle hover:scale-95 transition-all"
+>
+  {
+    typeof iconName === "string" && (
+      <Icon name={iconName} class="w-4 h-4 sm:w-6 sm:h-6 inline self-center" />
+    )
+  }
+  <span class="self-center px-1">{label}</span>
+</button>

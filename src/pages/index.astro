@@ -1,0 +1,9 @@
+---
+import type { Translation } from "../interfaces/base_translation";
+import Home from "../template/Home.astro";
+import { ar } from "../translations/ar";
+
+const t: Translation = ar;
+---
+
+<Home t={t} />

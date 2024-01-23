@@ -1,0 +1,106 @@
+---
+import FooterLink from "../../components/footer/FooterLink.astro";
+import { generateDestinationFromLocale } from "../../utils";
+import {
+  COPY_RIGHT_NAME,
+  EMAIL,
+  FACEBOOK,
+  INSTA,
+  LOCATION,
+} from "../../constants/keys";
+
+interface Props {
+  homeLiteral?: string;
+  aboutLiteral?: string;
+  activitiesLiteral?: string;
+  contactLiteral?: string;
+  donateLiteral?: string;
+  appLiteral?: string;
+  pricingLiteral?: string;
+  facebookLiteral?: string;
+  instagramLiteral?: string;
+  mapLocationLiteral?: string;
+  mailLiteral?: string;
+  slogan?: string;
+  sloganTitle?: string;
+  baroraLiteral?: string;
+}
+const p = Astro.props;
+
+const s = p.sloganTitle?.split(" ");
+const firstSlogan = s?.slice(0, Math.ceil(s.length / 1.5)).join(" ");
+const endSlogan = s?.slice(Math.ceil(s.length / 1.5), s.length).join(" ");
+
+const dd = generateDestinationFromLocale(undefined);
+---
+
+<footer
+  class="bg-[url('/footer_gradient.svg')] bg-cover bg-no-repeat pt-12 mt-10"
+>
+  <div
+    class="flex flex-col gap-8 md:gap-10 lg:gap-16 sm:flex-row justify-center items-center pt-4 pb-8"
+  >
+    <!-- LINKS CLUSTURE -->
+    <div class="flex flex-col gap-1 sm:gap-3">
+      <FooterLink label={p.homeLiteral ?? "Home"} link="/" />
+      <FooterLink
+        label={p.activitiesLiteral ?? "Activities"}
+        link={dd.activities}
+      />
+      <FooterLink label={p.contactLiteral ?? "Contact"} link={dd.contact} />
+      <FooterLink label={p.donateLiteral ?? "Donate"} link={dd.donate} />
+      <!-- <FooterLink label={p.appLiteral ?? "App"} link="/app" />
+      <FooterLink label={p.pricingLiteral ?? "Pricing"} link="#pricing" /> -->
+    </div>
+
+    <!-- SOCIALS CLUSTURE -->
+    <div class="flex flex-col gap-4 sm:gap-6">
+      <FooterLink
+        label={p.facebookLiteral ?? "Facebook"}
+        link={FACEBOOK}
+        iconName="mdi:facebook"
+        hoverColor="hover:text-blue-500"
+      />
+      <FooterLink
+        label={p.instagramLiteral ?? "Instagram"}
+        link={INSTA}
+        iconName="mdi:instagram"
+        hoverColor="hover:text-pink-500"
+      />
+
+      <FooterLink
+        label={p.mapLocationLiteral ?? "Map Location"}
+        iconName="mdi:map"
+        hoverColor="hover:text-green-500"
+        link={LOCATION}
+      />
+      <FooterLink
+        label={p.mailLiteral ?? "Mail"}
+        iconName="mdi:email"
+        hoverColor="hover:text-red-500"
+        link={`mailto:${EMAIL}`}
+      />
+    </div>
+
+    <!-- META DATA CLUSTURE -->
+    <div
+      class="flex flex-col gap-2 sm:gap-6 text-center sm:text-left sm:rtl:text-right"
+    >
+      <h5 class="text-xl sm:text-2xl md:text-3xl font-semibold">
+        {firstSlogan ?? "For A Better"}<br class="hidden md:block" />
+        {endSlogan ?? " Future"}
+      </h5>
+      <div
+        class="font-semibold text-sm/[26.2px] text-gray-600 max-w-[256px] rtl:sm:text-right"
+      >
+        {p.slogan ?? "Saya Organization, Human\nRights & democracy"}
+      </div>
+      <div
+        class="font-semibold text-sm/[26.2px] text-gray-600 max-w-[256px] rtl:sm:text-right"
+      >
+        © {p.baroraLiteral ?? COPY_RIGHT_NAME}
+        <span>•</span> 2023
+      </div>
+    </div>
+  </div>
+</footer>

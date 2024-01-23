@@ -1,0 +1,106 @@
+---
+// import { ViewTransitions } from "astro:transitions";
+import NavigationBar from "../components/NavigationBar.astro";
+import Footer from "../components/footer/Footer.astro";
+import type { Translation } from "../interfaces/base_translation";
+
+interface Props {
+  title: string;
+
+  translation: Translation;
+  disableLocalization?: boolean;
+}
+
+const { title, translation, disableLocalization = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang={translation.locale} class="scroll-smooth" dir={translation.dir}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/logo.webp" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="stylesheet" type="text/css" href="/globalStyling.css" />
+
+    <title>{title}</title>
+    <!-- <ViewTransitions /> -->
+
+    <!-- SEO -->
+    <meta name="description" content="Saya organization for human rights and deomcracy.">
+    <meta name="keywords" content="Saya, Saya Organization, Human Rights, سايا">
+    <meta name="author" content="Saya">
+    
+    <!-- Open Graph and Twitter Cards for Social Media -->
+    <meta property="og:title" content={translation.page_title}>
+    <meta property="og:description" content={translation.main_header}>
+    <meta property="og:image" content="/logo.webp">
+    <meta name="twitter:title" content="Saya Organization - Home Page">
+    <meta name="twitter:description" content={translation.main_header + " "+ translation.main_header_part2}>
+    <meta name="twitter:image" content="/logo.webp">
+    <meta name="twitter:card" content="/logo.webp">
+    
+    <!-- Favicon (32x32px) for the browser tab -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  </head>
+
+  <body>
+    <!-- BLANKET -->
+    <div
+      id="SITE_BLANKET"
+      class="bg-black opacity-0 z-40 w-full h-full fixed transition-all duration-500 hidden top-0 bottom-0 left-0 right-0"
+    >
+    </div>
+
+    <NavigationBar t={translation} />
+
+    <div class="h-16 sm:h-18"></div>
+
+    <slot />
+
+    <Footer
+      slogan={translation.main_header + " " + translation.main_header_part2}
+      sloganTitle={translation.footer_slogan_p1 +
+        " " +
+        translation.footer_slogan_p2 +
+        " "}
+      homeLiteral={translation.home_literal}
+      activitiesLiteral={translation.activities_literal}
+      contactLiteral={translation.contact_literal}
+      donateLiteral={translation.donate_literal}
+      facebookLiteral={translation.facebook_lit}
+      instagramLiteral={translation.instagram_lit}
+      mapLocationLiteral={translation.map_location_lit}
+      mailLiteral={translation.mail_lit}
+    />
+
+     {disableLocalization ?<div></div> :
+    <script >
+      const urlSearchParams = new URLSearchParams(window.location.search);
+      const params = Object.fromEntries(urlSearchParams.entries());
+      var locale: string = params.locale ?? "";
+      const localeFromCache: string | undefined = document.cookie;
+
+      // Retrieving the value from local storage
+      const cachedValue = localStorage.getItem("locale");
+      console.log(typeof cachedValue);
+
+      if (typeof cachedValue == "string") {
+        const href = window.location.href;
+        const isAdmin = href.includes("/edara");
+        if ((href.includes("/" + cachedValue) && !isAdmin) == false) {
+          const route = cachedValue == "en" ? "" : cachedValue;
+          if (route.length > 0) window.location.href = "/" + route;
+          console.log(route);
+        }
+      } else {
+        localStorage.setItem("locale", "en");
+      }
+    </script>}
+  </body>
+  <style is:global>
+    @import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap");
+  </style>
+</html>

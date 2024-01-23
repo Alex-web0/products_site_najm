@@ -1,0 +1,95 @@
+---
+interface ActionMetaData {
+  label: string;
+  onClick?: () => void;
+}
+
+/**
+ * Has a named slot `button`
+ *
+ * and a named slot `content`
+ */
+interface Props {
+  id: string;
+  title: string;
+  onClosed?: () => void;
+  onOpened?: () => void;
+  primary?: ActionMetaData;
+  secondary?: ActionMetaData;
+}
+
+const { id, title, primary } = Astro.props;
+
+const dialogId: string = id + Math.random().toString();
+const buttonId: string = id + Math.random().toString();
+const closeButtonId: string = id + Math.random().toString();
+---
+
+<!-- DIALOG -->
+<div
+  id={dialogId}
+  class="translate-y-full transition-all px-3 py-6 hidden fixed bg-white rounded-xl z-50 self-center left-[4%] right-[4%] sm:left-[16%] sm:right-[16%] md:left-[20%] md:right-[20%] top-[%50] bottom-[50%]"
+>
+  <div class="flex flex-col justify-start">
+    <h4 class="pb-4 text-xl sm:text-2xl md:text-3xl font-semibold">{title}</h4>
+    <slot name="content" class="pb-4" />
+    <div class="flex flex-row w-full align-middle justify-end">
+      <button id={closeButtonId} class="py-3 px-5"> Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- BUTTON -->
+<button id={buttonId}> <slot name="button" /></button>
+
+<script>
+  import { SITE_BLANKET, siteMapToggler } from "../utils";
+
+  declare global {
+    interface Window {
+      doSomethingWithValue(
+        buttonId: string,
+        dialogId: string,
+        closeButtonId: string
+      ): void;
+    }
+  }
+
+  window.doSomethingWithValue = (
+    buttonId: string,
+    dialogId: string,
+    closeButtonId: string
+  ) => {
+    console.log(buttonId);
+
+    const button = document.getElementById(buttonId);
+    const dialog = document.getElementById(dialogId);
+    const closeButton = document.getElementById(closeButtonId);
+    const siteBlanket = document.getElementById(SITE_BLANKET);
+
+    function toggleDialog() {
+      setTimeout(() => {
+        dialog!.classList.toggle("hidden");
+      }, 100);
+
+      setTimeout(() => {
+        dialog!.classList.toggle("translate-y-full");
+      }, 120);
+    }
+
+    function handleButtonClick() {
+      siteMapToggler(siteBlanket!, toggleDialog);
+
+      toggleDialog();
+    }
+
+    button?.addEventListener("click", handleButtonClick);
+    closeButton?.addEventListener("click", handleButtonClick);
+  };
+</script>
+
+<script define:vars={{ buttonId, dialogId, closeButtonId }}>
+document.addEventListener("DOMContentLoaded", () => {
+    doSomethingWithValue(buttonId, dialogId, closeButtonId);
+});
+</script>

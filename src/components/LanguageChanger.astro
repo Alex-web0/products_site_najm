@@ -1,0 +1,65 @@
+---
+import LanguageChangerDialogContent from "./LanguageChangerDialogContent.astro";
+interface Props {
+  mobile?: boolean;
+  locale: string;
+}
+
+const { mobile = false, locale } = Astro.props;
+
+const l = locale.toUpperCase();
+---
+
+{
+  mobile ? (
+    <div
+      id="LANGUAGE_SELECTOR_ID"
+      class={
+        "self-center text-sm md:px-2 cursor-pointer" +
+        (mobile ? " w-full px-3 hover:bg-slate-100 text-lg py-2" : "")
+      }
+    >
+      {l}
+    </div>
+  ) : (
+    <div
+      id="LANGUAGE_SELECTOR_ID_DESKTOP"
+      class="self-center text-sm  cursor-pointer"
+    >
+      {l}
+    </div>
+  )
+}
+<div>
+  <LanguageChangerDialogContent id="LANGUAGE_SELECTION_DIALOG" />
+</div>
+
+<!-- LANGUAGE SCRIPT -->
+<script>
+  const changer = document.getElementById("LANGUAGE_SELECTOR_ID");
+  const changerD = document.getElementById("LANGUAGE_SELECTOR_ID_DESKTOP");
+  const languageSelectionDialog = document.getElementById(
+    "LANGUAGE_SELECTION_DIALOG"
+  );
+  const languageSelectionDialogD = document.getElementById(
+    "LANGUAGE_SELECTION_DIALOG_DESKTOP"
+  );
+  try {
+    changer!.addEventListener("click", (ds) => {
+      //   const off = offset(changer!);
+      languageSelectionDialog?.classList.toggle("hidden");
+      languageSelectionDialog!.style.top = "20%";
+      languageSelectionDialog!.style.left = "40%";
+      //   console.log(off);
+    });
+    changerD!.addEventListener("click", (ds) => {
+      //   const off = offset(changer!);
+      languageSelectionDialogD?.classList.toggle("hidden");
+      languageSelectionDialogD!.style.top = "5%";
+      languageSelectionDialogD!.style.left = "50%";
+      //   console.log(off);
+    });
+  } catch (e) {
+    console.error(e);
+  }
+</script>

@@ -1,0 +1,36 @@
+---
+import { Icon } from "astro-icon";
+
+interface Props {
+  label: string;
+  link: string;
+  iconName?: string;
+  hoverColor?: string;
+}
+
+const {
+  label,
+  link,
+  iconName = "mdi:dot",
+  hoverColor = "hover:text-gray-800",
+} = Astro.props;
+---
+
+<div class="mx-auto sm:mx-0">
+  <a
+    class={hoverColor +
+      " " +
+      "text-[22px]/[26px] font-semibold text-gray-600  flex flex-wrap flex-row items-center"}
+    href={link}
+  >
+    <Icon
+      class={(iconName == "mdi:dot"
+        ? "w-8 h-8 hover:text-gray-800 "
+        : "w-5 h-5 mx-2 " + hoverColor) +
+        " " +
+        "block text-gray-600 "}
+      name={iconName}
+    />
+    {label}
+  </a>
+</div>

@@ -1,0 +1,30 @@
+---
+interface Props {
+  selected: boolean;
+  label: string;
+  href?: string;
+  special?: boolean;
+}
+
+const { selected, label, href, special = false } = Astro.props;
+---
+
+<!-- EMPHASISED -->
+<div class={"flex flex-row align-middle " + (selected ? "" : "hidden")}>
+  <div class="h-5 bg-black rounded-full w-[7px] mx-[7px] self-center"></div>
+
+  <p class="font-semibold text-[1.3rem] self-center">{label}</p>
+</div>
+
+<!-- NORMAL -->
+<a
+  href={href}
+  class={"flex flex-row align-middle " + (selected ? "hidden" : "")}
+>
+  <p
+    class={"font-middle  text-[1.3rem] self-center " +
+      (special ? "text-cyan-600" : "text-gray-800")}
+  >
+    {label}
+  </p>
+</a>

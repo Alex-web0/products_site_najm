@@ -1,0 +1,50 @@
+import type { Translation } from "./../interfaces/base_translation";
+
+// French data
+export const fr: Translation = {
+  locale: "fr",
+  dir: "ltr",
+  // Add French translations here based on the "en" structure
+  page_title: "Organisation Saya",
+  home_literal: "Accueil",
+  activities_literal: "Activités",
+  contact_literal: "Contact",
+  contact_us_literal: "Contactez-nous",
+  see_video_literal: "Voir la vidéo",
+  donate_literal: "Faire un don",
+  main_header: "Organisation Saya, Droits",
+  main_header_part2: "de l'homme et démocratie",
+  sub_header:
+    "Autonomisation des droits, enrichissement de la démocratie et protection des femmes.",
+  contact_us_sub_title:
+    "Choisissez la méthode qui vous convient le mieux pour nous contacter ! Nous vous répondrons dès que possible.",
+  whatsapp_lit: "WhatsApp",
+  gmail_lit: "Courrier Gmail",
+  instagram_lit: "Instagram",
+  facebook_lit: "Facebook",
+  loading_lit: "Chargement...",
+  or_you_can_lit: "Ou vous pouvez",
+  first_name_lit: "Prénom",
+  last_name_lit: "Nom de famille",
+  organization_lit: "Organisation",
+  contact_reason_lit: "Motif du contact",
+  message_title_lit: "Objet du message",
+  message_lit: "Message",
+  website_or_email_lit: "Site web ou e-mail",
+  submit_lit: "Envoyer",
+  make_bright_future_slogan: "Créez un avenir radieux",
+  encourgement_statement: "Faire un don maintenant",
+  learn_about_causes_literal: "En savoir plus sur nos causes",
+  close_literal: "Fermer",
+  send_to_literal_with_col: "Envoyer à :",
+  donate_through_rafidain_title: "Faire un don par Rafidain",
+  master_card_id_literal: "Envoyer à la carte Master :",
+  donate_through_zaincash_title: "Faire un don via Zain Cash",
+  learn_more_title: "En savoir plus sur nous",
+  learn_more_description:
+    "La mission de l'organisation est de sensibiliser la société aux droits de l'homme individuels et sociaux dans la vie et la sécurité. Cela comprend la promotion de la liberté d'expression, de l'égalité devant la loi et du droit à l'alimentation, à l'éducation et aux soins de santé. Ils contribuent activement à la construction d'une société civile fondée sur les principes démocratiques et la justice sociale, luttant pour la justice et l'égalité pour toutes les couches de la société sous la loi. De plus, l'organisation entretient des liens avec les institutions internationales dédiées aux droits de l'homme, avec les Nations Unies en tête.",
+  footer_slogan_p1: "Pour un avenir",
+  footer_slogan_p2: "meilleur",
+  map_location_lit: "Emplacement sur la carte",
+  mail_lit: "Courrier",
+};

@@ -1,0 +1,407 @@
+---
+import Icon from "astro-icon";
+import Container from "../components/Container.astro";
+import ContainerImaged from "../components/ContainerImaged.astro";
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+import TextButton from "../components/TextButton.astro";
+import ContactCard from "../components/ContactCard.astro";
+import DialogButton from "../components/DialogButton.astro";
+import DonationCard from "../components/DonationCard.astro";
+import { generateDestinationFromLocale } from "../utils";
+import { ContactForm } from "../components/contact/ContactForm";
+import type { Translation } from "../interfaces/base_translation";
+import DoctorCard from "../components/ProductCard.astro";
+import {
+  COPY_RIGHT_NAME,
+  EMAIL,
+  FACEBOOK,
+  FACEBOOK_NAME,
+  INSTA,
+  INSTA_AT,
+  PHONE_NUMBER,
+} from "../constants/keys";
+import ServiceCard from "../components/ServiceCard.astro";
+import ProductCard from "../components/ProductCard.astro";
+import FileDownloadLink from "../components/FileDownloadLink.astro";
+
+interface Props {
+  t: Translation;
+}
+
+const { t } = Astro.props;
+
+const locale = t.locale;
+
+function generateLocalizedCausesRoute(locale: string): string {
+  const rootCausesRoute = "/causes";
+  if (locale == "en") return rootCausesRoute;
+
+  return rootCausesRoute + `/${locale}`;
+}
+---
+
+<Layout title={t.page_title} translation={t}>
+  <!-- HERO SECTION -->
+  <ContainerImaged
+    bgClass="bg-[url('/cover.webp')] bg-bottom "
+    contentPaddingClass="p-2 sm:p-4"
+  >
+    <h1
+      class="text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-sans md:pt-28 pt-24"
+      style="line-height: 125%;"
+    >
+      {t.main_header}
+      <br />
+      {t.main_header_part2}
+      <!-- Saya Organization, Human<br />Rights & democracy -->
+    </h1>
+
+    <h2
+      class="text-[13px] sm:text-sm md:text-xl lg:text-2xl text-gray-100 pt-6 pb-10"
+    >
+      {t.sub_header}
+    </h2>
+
+    <div class="flex flex-row">
+      <a
+        href=""
+        id="VIDEO_LINK_BUTTON"
+        target="_blank"
+        rel="noopener noreferrer"
+        ><Button
+          id="SEE_VIDEO_BUTTON"
+          label={t.see_video_literal}
+          iconName="mdi:play"
+        /></a
+      >
+      <div class="w-2"></div>
+      <TextButton
+        href={generateDestinationFromLocale(locale).contact}
+        label={t.contact_literal}
+      />
+    </div>
+
+    <div class="h-16 md:h-20"></div>
+  </ContainerImaged>
+
+  <!-- Activity SECTION -->
+  <Container makeCol={true}>
+    <div id="activities" class="h-6"></div>
+    <div class="h-12 w-12 self-center mb-6">
+      <img src="/info.webp" alt="hello" class="self-center" />
+    </div>
+
+    <h2 class="mx-auto text-4xl mb-5 sm:mb-6">{t.our_products}</h2>
+
+    <div
+      class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-3 gap-4 my-3 self-center mx-auto"
+    >
+      {
+        t.prodcuts.map((e) => (
+          <ProductCard
+            specialty={e.specialty}
+            bg_class={e.bgClass}
+            name={e.name}
+          />
+        ))
+      }
+    </div>
+
+    <div class="h-6"></div>
+  </Container>
+
+  <!-- SERVICES SECTIONS -->
+  <div class="bg-indigo-50">
+    <Container makeCol={true}>
+      <h2 class="text-4xl mb-7 sm:mb-12 font-medium mt-6">
+        {t.medical_services}
+      </h2>
+
+      <div class="grid grid-flows grid-cols-1 md:grid-cols-3 gap-y-8 gap-1">
+        {
+          t.why_us_data.map((e) => (
+            <ServiceCard title={e.title} image_link={e.imageLink}>
+              {e.content}
+            </ServiceCard>
+          ))
+        }
+      </div>
+    </Container>
+  </div>
+
+  <!-- About The Company -->
+  <Container makeCol={true}>
+    <h2 class="text-4xl mb-7 sm:mb-12 font-medium mt-6 left-0">
+      {t.comapny_brief_title}
+    </h2>
+
+    <p class="text-lg">{t.company_brief}</p>
+
+    <div class="h-6"></div>
+
+    <div class="flex flex-row gap-4">
+      <FileDownloadLink link="/cosby.pdf">
+        Cosby Download (PDF)
+      </FileDownloadLink>
+      <FileDownloadLink link="/kervan.pdf">
+        Kervan Download (PDF)
+      </FileDownloadLink>
+    </div>
+
+    <div class="h-12"></div>
+  </Container>
+
+  <!-- DIVIDER -->
+  <div class="relative flex py-5 items-center">
+    <div class="flex-grow border-t border-gray-400"></div>
+  </div>
+
+  <!-- <Container makeCol={true}>
+    <h2 class="mx-auto text-4xl mb-7 sm:mb-12 font-medium mt-6">
+      {t.patient_reviews_literal}
+    </h2>
+
+    <div class="grid grid-flows grid-cols-1 md:grid-cols-3 gap-y-8 gap-1">
+      {
+        [0, 1, 2, 3, 4, 6].map((e) => (
+          <PatientReview
+            name={t.name_dummy}
+            image_link="/avatar.png"
+            stars={4.8}
+          >
+            {t.review_dummy}
+          </PatientReview>
+        ))
+      }
+    </div>
+
+    <div class="h-12"></div>
+  </Container> -->
+
+  <!-- Contact SECTION -->
+  <Container makeCol={true}>
+    <div class="flex flex-col align-middle justify-center w-full" id="contact">
+      <div class="h-6"></div>
+
+      <h2 class="mx-auto text-4xl my-4 self-center">{t.contact_us_literal}</h2>
+      <p class="self-center text-center">
+        {t.contact_us_sub_title}
+      </p>
+
+      <!-- CONTACT CARDS -->
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 my-3 self-center mx-auto"
+      >
+        <ContactCard
+          href={`tel:${PHONE_NUMBER}`}
+          content={PHONE_NUMBER}
+          label={t.whatsapp_lit}
+          imageClass="bg-[url('/whatsapp.webp')] bg-cover"
+        />
+        <ContactCard
+          href={`mailto:${EMAIL}`}
+          content={EMAIL.split("@")[0]}
+          label={t.gmail_lit}
+          imageClass="bg-[url('/email.webp')] bg-cover"
+        />
+        <ContactCard
+          href={FACEBOOK}
+          content={FACEBOOK_NAME}
+          label={t.facebook_lit}
+          imageClass="bg-[url('/facebook.webp')] bg-cover"
+        />
+        <ContactCard
+          href={INSTA}
+          content={INSTA_AT}
+          label={t.instagram_lit}
+          imageClass="bg-[url('/instagram.webp')] bg-cover"
+        />
+      </div>
+    </div>
+
+    <div class="flex flex-row w-full align-middle my-2 md:my-4">
+      <span class="h-[2px] bg-slate-600 w-[25%] lg:w-1/3 self-center mx-auto">
+      </span>
+      <span class="self-center w-fit text-sm sm:text-lg"
+        >{t.or_you_can_lit}</span
+      >
+      <span class="h-[2px] w-[25%] bg-slate-600 lg:w-1/3 self-center mx-auto">
+      </span>
+    </div>
+
+    <div class="md:px-4">
+      <ContactForm
+        config={{
+          firstName: { label: t.first_name_lit },
+          lastName: { label: t.last_name_lit },
+          organization: { label: t.organization_lit },
+          message: { label: t.message_lit },
+          messageTitle: { label: t.message_title_lit },
+          contactReason: { label: t.contact_reason_lit },
+          websiteOrEmail: { label: t.website_or_email_lit },
+          submitLiteral: t.submit_lit,
+        }}
+        client:only="react"
+      />
+    </div>
+  </Container>
+
+  <div class="h-10"></div>
+
+  <!-- ENCOURAGEMENT SECION SECTON -->
+  <div class="bg-[#E4F0F6] py-4 px-2" id="donate">
+    <Container>
+      <div class="flex flex-col sm:flex-row justify-between w-full sm:pb-4">
+        <!-- TITLE COL -->
+        <div class="flex-col self-center justify-start align-baseline">
+          <div class="w-6 h-6 sm:w-8 sm:h-8 mb-4 mt-2 sm:mx-0 mx-auto">
+            <Icon name="mdi:love" color="#055A8C" />
+          </div>
+
+          <p
+            class="self-start text-[#055A8C] text-[1.35rem] sm:text-[1.85rem] md:text-[2.55rem] text-center sm:text-start"
+          >
+            {t.make_bright_future_slogan}
+          </p>
+          <h3
+            class="text-[#0C3953] text-[2.5rem] sm:text-[3rem] md:text-[4rem] pb-3 font-bold text-center sm:text-left sm:rtl:text-right rtl:sm:mb-4"
+          >
+            {t.encourgement_statement}
+          </h3>
+
+          <a href={"#contact"}>
+            <div class="flex flex-row align-middle">
+              <div
+                class="w-5 h-5 sm:w-6 sm:h-6 inline self-center invisible sm:visible"
+              >
+                <Icon name="mdi:link" color="#0079BF" />
+              </div>
+              <span
+                class="text-sm sm:text-lg mx-auto sm:mx-2 font-medium text-cyan-600"
+              >
+                {t.learn_about_causes_literal}
+              </span>
+            </div>
+          </a>
+
+          <div class="h-2"></div>
+        </div>
+      </div>
+    </Container>
+  </div>
+
+  <!-- ABOUT SECTION -->
+  <Container>
+    <div
+      class="flex flex-col md:flex-row justify-between align-middle m-2 md:m-0 w-fit py-5 sm:py-8"
+    >
+      <!-- VIDEO IMAGE -->
+      <div
+        class={"sm:aspect-video h-fit sm:h-48 md:h-60 rounded-xl overflow-clip w-fit sm:w-[80%] mb-2 md:mb-0 " +
+          ` bg-cover bg-blue-100 relative align-middle `}
+      >
+        <img
+          id="ABOUT_IMAGE"
+          src=""
+          alt="About Image"
+          class="object-cover w-full h-full self-center"
+        />
+        <div
+          class="bg-gradient-to-tr from-black/60 via-transparent to-black/40 from-15% via-30% to-90% w-full h-full absolute top-0 z-30 flex"
+        >
+          <a
+            id="VIDEO_ABOUT_LINK"
+            class="text-white w-10 h-10 sm:w-16 sm:h-16 self-center m-auto hover:scale-[92%] transition-all"
+            href=""
+            target="_blank"
+          >
+            <Icon name="mdi:play" />
+          </a>
+        </div>
+      </div>
+
+      <!-- VIDEO DATA -->
+      <div class="flex flex-col w-fit md:ms-6 justify-center align-middle">
+        <h4 class="text-xl sm:text-2xl md:text-3xl font-bold sm:pb-2">
+          {t.learn_more_title}
+        </h4>
+        <p class="text-sm text-gray-500 self-center">
+          {t.learn_more_description}
+        </p>
+      </div>
+    </div>
+  </Container>
+</Layout>
+
+<script>
+  /* SCRIPT TO HANDLE MOUSE MOVMENTS FOR DRSGGING ACTIVITY VIEW*/
+  document.addEventListener("DOMContentLoaded", function () {
+    const ele = document.getElementById("ACTIVITY_SCROLLING_VIEW")!;
+
+    let pos = { top: 0, left: 0, x: 0, y: 0 };
+
+    const mouseDownHandler = function (e: any) {
+      ele.classList.toggle("cursor-grabbing");
+      ele.classList.toggle("cursor-grab");
+      ele.style.userSelect = "none";
+
+      pos = {
+        left: ele.scrollLeft,
+        top: ele.scrollTop,
+        // Get the current mouse position
+        x: e.clientX,
+        y: e.clientY,
+      };
+
+      document.addEventListener("mousemove", mouseMoveHandler);
+      document.addEventListener("mouseup", mouseUpHandler);
+    };
+
+    const mouseMoveHandler = function (e: any) {
+      // How far the mouse has been moved
+      const dx = e.clientX - pos.x;
+      const dy = e.clientY - pos.y;
+
+      // Scroll the element
+      ele.scrollTop = pos.top - dy;
+      ele.scrollLeft = pos.left - dx;
+    };
+
+    const mouseUpHandler = function () {
+      ele.classList.toggle("cursor-grabbing");
+      ele.classList.toggle("cursor-grab");
+      ele.style.removeProperty("user-select");
+
+      document.removeEventListener("mousemove", mouseMoveHandler);
+      document.removeEventListener("mouseup", mouseUpHandler);
+    };
+
+    // Attach the handler
+    ele.addEventListener("mousedown", mouseDownHandler);
+  });
+</script>
+
+<script>
+  // import { getPublicDataSnapshot, getAboutVideoThumbnail } from "../firebase";
+
+  // const pd = await getPublicDataSnapshot();
+
+  // todo: add image and about link accordingly
+
+  const pd = {
+    aboutImage:
+      "https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG9zcGl0YWx8ZW58MHx8MHx8fDA%3D",
+    about_video: "https://youtu.be/TzNe1ndYUKM",
+  };
+  const aboutImageLink = pd.aboutImage;
+  const aboutVideoLink = pd.about_video;
+
+  const aboutImage = document.getElementById("ABOUT_IMAGE");
+  const videoLink = document.getElementById("VIDEO_LINK_BUTTON");
+  const videoLinkAbout = document.getElementById("VIDEO_ABOUT_LINK");
+
+  aboutImage?.setAttribute("src", aboutImageLink);
+  videoLink?.setAttribute("href", aboutVideoLink);
+  videoLinkAbout?.setAttribute("href", aboutVideoLink);
+</script>

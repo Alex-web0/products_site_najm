@@ -1,0 +1,44 @@
+---
+import { generateDestinationFromLocale } from "../utils";
+import Destination from "./Destination.astro";
+import { Icon } from "astro-icon";
+import LanguageChanger from "./LanguageChanger.astro";
+import type { Translation } from "../interfaces/base_translation";
+
+interface Props {
+  col?: boolean;
+  locale: string;
+  t: Translation;
+}
+
+const { col = false, locale, t } = Astro.props;
+const d = generateDestinationFromLocale(locale);
+---
+
+<ul
+  class={` ${
+    col ? "flex-col flex" : "flex-row hidden md:flex"
+  } sm:gap-3 lg:gap-6 `}
+>
+  <LanguageChanger locale={locale} mobile={false} />
+  <Destination label={t.home_literal} selected={false} href={d.home} />
+  <Destination
+    label={t.activities_literal}
+    selected={false}
+    href={d.activities}
+  />
+  <Destination label={t.contact_literal} selected={false} href={d.contact} />
+  <Destination
+    label={t.donate_literal}
+    selected={false}
+    href={d.donate}
+    special={true}
+  />
+</ul>
+
+<button
+  id="SITE_MENU_BUTTON"
+  class="w-8 h-8 sm:w-10 sm:h-10 flex md:hidden flex-row"
+>
+  <Icon name="mdi:menu" class="self-center" />
+</button>

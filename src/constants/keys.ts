@@ -1,0 +1,9 @@
+export const COPY_RIGHT_NAME = "Media Complex";
+export const FACEBOOK = "https://facebook.com";
+export const FACEBOOK_NAME = "Media Co";
+export const INSTA = "https://instagram.com";
+export const INSTA_AT = "@MediaMed";
+export const LOCATION = "https://maps.google.com/";
+export const EMAIL = "testEmail@gmail.com";
+export const PHONE_NUMBER = "+9647731001599";
+export const PHONE_NUMBER_SMALL = "7731001599";

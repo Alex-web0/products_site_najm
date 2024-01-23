@@ -1,0 +1,11 @@
+---
+import type { Translation } from "../interfaces/base_translation";
+import Home from "../template/Home.astro";
+import { en } from "../translations/en";
+
+const locale = "en";
+
+const t: Translation = en;
+---
+
+<Home t={t} />

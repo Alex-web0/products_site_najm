@@ -1,0 +1,38 @@
+---
+interface Props {
+  name: string;
+  specialty: string;
+  bg_class: string;
+}
+
+const { name, specialty, bg_class } = Astro.props;
+---
+
+<div class="relative w-60 sm:w-64 md:w-68 lg:w-80">
+  <!-- ACTUAL CARD -->
+  <div class="flex flex-col">
+    <div
+      class={bg_class +
+        " " +
+        " aspect-[1] rounded-lg bg-center bg-no-repeat bg-cover "}
+    >
+    </div>
+  </div>
+
+  <!-- DATA -->
+  <div
+    class="bg-white opacity-0 focus:opacity-100 hover:opacity-100 w-full h-full z-10 absolute top-0 bottom-0 left-0 right-0 transition-all duration-[385] rounded-md hover:shadow-md"
+  >
+    <div class="p-2 sm:p-4 md:p-6">
+      <h4 class="text-xl md:text-2xl px-2">
+        {name}
+      </h4>
+
+      <div class="h-4"></div>
+
+      <h4 class="text-md md:text-lg text-gray-600 px-2">
+        {specialty}
+      </h4>
+    </div>
+  </div>
+</div>
