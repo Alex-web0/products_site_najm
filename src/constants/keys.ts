@@ -1,4 +1,4 @@
-export const COPY_RIGHT_NAME = "Media Complex";
+export const COPY_RIGHT_NAME = "Najam Company";
 export const FACEBOOK = "https://facebook.com";
 export const FACEBOOK_NAME = "Media Co";
 export const INSTA = "https://instagram.com";
