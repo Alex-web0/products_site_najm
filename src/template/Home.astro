@@ -24,6 +24,7 @@ import {
 import ServiceCard from "../components/ServiceCard.astro";
 import ProductCard from "../components/ProductCard.astro";
 import FileDownloadLink from "../components/FileDownloadLink.astro";
+import AddressLine from "../components/AddressLine.astro";
 
 interface Props {
   t: Translation;
@@ -157,6 +158,33 @@ function generateLocalizedCausesRoute(locale: string): string {
     <div class="flex-grow border-t border-gray-400"></div>
   </div>
 
+  <!-- ADDRESSES -->
+  <Container>
+    <div class="flex flex-col gap-4">
+      <h2 class="text-4xl mb-7 sm:mb-12 font-medium mt-6 left-0">
+        العناويـــن
+      </h2>
+
+      <AddressLine title="سطر عنوان رقم 1">
+        موصل الجسر الخامس قرب حي الرقاف
+      </AddressLine>
+      <AddressLine title="سطر عنوان رقم 1">
+        دهوك - شارع 16 - مقابل حي ال80
+      </AddressLine>
+
+      <div class="h-6"></div>
+    </div><img
+      src="/qr_code_address.png"
+      alt="QR Code"
+      class="max-w-xl rounded-md"
+    />
+  </Container>
+
+  <!-- DIVIDER -->
+  <div class="relative flex py-5 items-center">
+    <div class="flex-grow border-t border-gray-400"></div>
+  </div>
+
   <!-- <Container makeCol={true}>
     <h2 class="mx-auto text-4xl mb-7 sm:mb-12 font-medium mt-6">
       {t.patient_reviews_literal}
@@ -184,7 +212,9 @@ function generateLocalizedCausesRoute(locale: string): string {
     <div class="flex flex-col align-middle justify-center w-full" id="contact">
       <div class="h-6"></div>
 
-      <h2 class="mx-auto text-4xl my-4 self-center">{t.contact_us_literal}</h2>
+      <h2 class="mx-auto text-4xl my-4 self-center">
+        {t.contact_us_literal}
+      </h2>
       <p class="self-center text-center">
         {t.contact_us_sub_title}
       </p>
@@ -290,48 +320,6 @@ function generateLocalizedCausesRoute(locale: string): string {
       </div>
     </Container>
   </div>
-
-  <!-- ABOUT SECTION -->
-  <Container>
-    <div
-      class="flex flex-col md:flex-row justify-between align-middle m-2 md:m-0 w-fit py-5 sm:py-8"
-    >
-      <!-- VIDEO IMAGE -->
-      <div
-        class={"sm:aspect-video h-fit sm:h-48 md:h-60 rounded-xl overflow-clip w-fit sm:w-[80%] mb-2 md:mb-0 " +
-          ` bg-cover bg-blue-100 relative align-middle `}
-      >
-        <img
-          id="ABOUT_IMAGE"
-          src=""
-          alt="About Image"
-          class="object-cover w-full h-full self-center"
-        />
-        <div
-          class="bg-gradient-to-tr from-black/60 via-transparent to-black/40 from-15% via-30% to-90% w-full h-full absolute top-0 z-30 flex"
-        >
-          <a
-            id="VIDEO_ABOUT_LINK"
-            class="text-white w-10 h-10 sm:w-16 sm:h-16 self-center m-auto hover:scale-[92%] transition-all"
-            href=""
-            target="_blank"
-          >
-            <Icon name="mdi:play" />
-          </a>
-        </div>
-      </div>
-
-      <!-- VIDEO DATA -->
-      <div class="flex flex-col w-fit md:ms-6 justify-center align-middle">
-        <h4 class="text-xl sm:text-2xl md:text-3xl font-bold sm:pb-2">
-          {t.learn_more_title}
-        </h4>
-        <p class="text-sm text-gray-500 self-center">
-          {t.learn_more_description}
-        </p>
-      </div>
-    </div>
-  </Container>
 </Layout>
 
 <script>

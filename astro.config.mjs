@@ -14,11 +14,11 @@ import react from "@astrojs/react";
 // SSR CACHE NO EXIST: https://stackoverflow.com/questions/75971534/does-astro-js-fallback-to-ssr-when-cache-is-not-available
 // ssr docs
 
-const LIVE_URL = "https://Alex-web0.github.io";
+const LIVE_URL = "https://Alex-web0.github.io/products_site_najm";
 
 // https://astro.build/config
 export default defineConfig({
   site: LIVE_URL,
-  base: "/products_site_najm",
+  // base: "/products_site_najm",
   integrations: [tailwind(), react()],
 });
