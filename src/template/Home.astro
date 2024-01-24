@@ -159,33 +159,38 @@ function generateLocalizedCausesRoute(locale: string): string {
   </div>
 
   <!-- ADDRESSES -->
-  <Container>
-    <div class="flex flex-col gap-4">
-      <h2 class="text-4xl mb-7 sm:mb-12 font-medium mt-6 left-0">
-        العناويـــن
-      </h2>
+  <div class="w-full max-w-screen-xl mx-auto">
+    <div
+      class={" flex flex-col  md:flex-row " + "  justify-between p-2 md:py-3"}
+    >
+      <div class="flex flex-col gap-4">
+        <h2 class="text-4xl mb-7 sm:mb-12 font-medium mt-6 left-0">
+          العناويـــن
+        </h2>
 
-      <AddressLine title="سطر عنوان رقم 1">
-        موصل الجسر الخامس قرب حي الرقاف
-      </AddressLine>
-      <AddressLine title="سطر عنوان رقم 1">
-        دهوك - شارع 16 - مقابل حي ال80
-      </AddressLine>
+        <AddressLine title="سطر عنوان رقم 1">
+          موصل الجسر الخامس قرب حي الرقاف
+        </AddressLine>
+        <AddressLine title="سطر عنوان رقم 1">
+          دهوك - شارع 16 - مقابل حي ال80
+        </AddressLine>
 
-      <div class="h-6"></div>
-    </div><img
-      src="/qr_code_address.png"
-      alt="QR Code"
-      class="max-w-xl rounded-md"
-    />
-  </Container>
+        <div class="h-6"></div>
+      </div><img
+        src="/qr_code_address.png"
+        alt="QR Code"
+        class="max-w-xl rounded-md"
+      />
+    </div>
 
-  <!-- DIVIDER -->
-  <div class="relative flex py-5 items-center">
-    <div class="flex-grow border-t border-gray-400"></div>
+    <!-- DIVIDER -->
+    <div class="relative flex py-5 items-center">
+      <div class="flex-grow border-t border-gray-400"></div>
+    </div>
   </div>
+</Layout>
 
-  <!-- <Container makeCol={true}>
+<!-- <Container makeCol={true}>
     <h2 class="mx-auto text-4xl mb-7 sm:mb-12 font-medium mt-6">
       {t.patient_reviews_literal}
     </h2>
@@ -207,120 +212,117 @@ function generateLocalizedCausesRoute(locale: string): string {
     <div class="h-12"></div>
   </Container> -->
 
-  <!-- Contact SECTION -->
-  <Container makeCol={true}>
-    <div class="flex flex-col align-middle justify-center w-full" id="contact">
-      <div class="h-6"></div>
+<!-- Contact SECTION -->
+<Container makeCol={true}>
+  <div class="flex flex-col align-middle justify-center w-full" id="contact">
+    <div class="h-6"></div>
 
-      <h2 class="mx-auto text-4xl my-4 self-center">
-        {t.contact_us_literal}
-      </h2>
-      <p class="self-center text-center">
-        {t.contact_us_sub_title}
-      </p>
+    <h2 class="mx-auto text-4xl my-4 self-center">
+      {t.contact_us_literal}
+    </h2>
+    <p class="self-center text-center">
+      {t.contact_us_sub_title}
+    </p>
 
-      <!-- CONTACT CARDS -->
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 my-3 self-center mx-auto"
-      >
-        <ContactCard
-          href={`tel:${PHONE_NUMBER}`}
-          content={PHONE_NUMBER}
-          label={t.whatsapp_lit}
-          imageClass="bg-[url('/whatsapp.webp')] bg-cover"
-        />
-        <ContactCard
-          href={`mailto:${EMAIL}`}
-          content={EMAIL.split("@")[0]}
-          label={t.gmail_lit}
-          imageClass="bg-[url('/email.webp')] bg-cover"
-        />
-        <ContactCard
-          href={FACEBOOK}
-          content={FACEBOOK_NAME}
-          label={t.facebook_lit}
-          imageClass="bg-[url('/facebook.webp')] bg-cover"
-        />
-        <ContactCard
-          href={INSTA}
-          content={INSTA_AT}
-          label={t.instagram_lit}
-          imageClass="bg-[url('/instagram.webp')] bg-cover"
-        />
-      </div>
-    </div>
-
-    <div class="flex flex-row w-full align-middle my-2 md:my-4">
-      <span class="h-[2px] bg-slate-600 w-[25%] lg:w-1/3 self-center mx-auto">
-      </span>
-      <span class="self-center w-fit text-sm sm:text-lg"
-        >{t.or_you_can_lit}</span
-      >
-      <span class="h-[2px] w-[25%] bg-slate-600 lg:w-1/3 self-center mx-auto">
-      </span>
-    </div>
-
-    <div class="md:px-4">
-      <ContactForm
-        config={{
-          firstName: { label: t.first_name_lit },
-          lastName: { label: t.last_name_lit },
-          organization: { label: t.organization_lit },
-          message: { label: t.message_lit },
-          messageTitle: { label: t.message_title_lit },
-          contactReason: { label: t.contact_reason_lit },
-          websiteOrEmail: { label: t.website_or_email_lit },
-          submitLiteral: t.submit_lit,
-        }}
-        client:only="react"
+    <!-- CONTACT CARDS -->
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 my-3 self-center mx-auto"
+    >
+      <ContactCard
+        href={`tel:${PHONE_NUMBER}`}
+        content={PHONE_NUMBER}
+        label={t.whatsapp_lit}
+        imageClass="bg-[url('/whatsapp.webp')] bg-cover"
+      />
+      <ContactCard
+        href={`mailto:${EMAIL}`}
+        content={EMAIL.split("@")[0]}
+        label={t.gmail_lit}
+        imageClass="bg-[url('/email.webp')] bg-cover"
+      />
+      <ContactCard
+        href={FACEBOOK}
+        content={FACEBOOK_NAME}
+        label={t.facebook_lit}
+        imageClass="bg-[url('/facebook.webp')] bg-cover"
+      />
+      <ContactCard
+        href={INSTA}
+        content={INSTA_AT}
+        label={t.instagram_lit}
+        imageClass="bg-[url('/instagram.webp')] bg-cover"
       />
     </div>
-  </Container>
-
-  <div class="h-10"></div>
-
-  <!-- ENCOURAGEMENT SECION SECTON -->
-  <div class="bg-[#E4F0F6] py-4 px-2" id="donate">
-    <Container>
-      <div class="flex flex-col sm:flex-row justify-between w-full sm:pb-4">
-        <!-- TITLE COL -->
-        <div class="flex-col self-center justify-start align-baseline">
-          <div class="w-6 h-6 sm:w-8 sm:h-8 mb-4 mt-2 sm:mx-0 mx-auto">
-            <Icon name="mdi:love" color="#055A8C" />
-          </div>
-
-          <p
-            class="self-start text-[#055A8C] text-[1.35rem] sm:text-[1.85rem] md:text-[2.55rem] text-center sm:text-start"
-          >
-            {t.make_bright_future_slogan}
-          </p>
-          <h3
-            class="text-[#0C3953] text-[2.5rem] sm:text-[3rem] md:text-[4rem] pb-3 font-bold text-center sm:text-left sm:rtl:text-right rtl:sm:mb-4"
-          >
-            {t.encourgement_statement}
-          </h3>
-
-          <a href={"#contact"}>
-            <div class="flex flex-row align-middle">
-              <div
-                class="w-5 h-5 sm:w-6 sm:h-6 inline self-center invisible sm:visible"
-              >
-                <Icon name="mdi:link" color="#0079BF" />
-              </div>
-              <span
-                class="text-sm sm:text-lg mx-auto sm:mx-2 font-medium text-cyan-600"
-              >
-                {t.learn_about_causes_literal}
-              </span>
-            </div>
-          </a>
-
-          <div class="h-2"></div>
-        </div>
-      </div>
-    </Container>
   </div>
-</Layout>
+
+  <div class="flex flex-row w-full align-middle my-2 md:my-4">
+    <span class="h-[2px] bg-slate-600 w-[25%] lg:w-1/3 self-center mx-auto">
+    </span>
+    <span class="self-center w-fit text-sm sm:text-lg">{t.or_you_can_lit}</span>
+    <span class="h-[2px] w-[25%] bg-slate-600 lg:w-1/3 self-center mx-auto">
+    </span>
+  </div>
+
+  <div class="md:px-4">
+    <ContactForm
+      config={{
+        firstName: { label: t.first_name_lit },
+        lastName: { label: t.last_name_lit },
+        organization: { label: t.organization_lit },
+        message: { label: t.message_lit },
+        messageTitle: { label: t.message_title_lit },
+        contactReason: { label: t.contact_reason_lit },
+        websiteOrEmail: { label: t.website_or_email_lit },
+        submitLiteral: t.submit_lit,
+      }}
+      client:only="react"
+    />
+  </div>
+</Container>
+
+<div class="h-10"></div>
+
+<!-- ENCOURAGEMENT SECION SECTON -->
+<div class="bg-[#E4F0F6] py-4 px-2" id="donate">
+  <Container>
+    <div class="flex flex-col sm:flex-row justify-between w-full sm:pb-4">
+      <!-- TITLE COL -->
+      <div class="flex-col self-center justify-start align-baseline">
+        <div class="w-6 h-6 sm:w-8 sm:h-8 mb-4 mt-2 sm:mx-0 mx-auto">
+          <Icon name="mdi:love" color="#055A8C" />
+        </div>
+
+        <p
+          class="self-start text-[#055A8C] text-[1.35rem] sm:text-[1.85rem] md:text-[2.55rem] text-center sm:text-start"
+        >
+          {t.make_bright_future_slogan}
+        </p>
+        <h3
+          class="text-[#0C3953] text-[2.5rem] sm:text-[3rem] md:text-[4rem] pb-3 font-bold text-center sm:text-left sm:rtl:text-right rtl:sm:mb-4"
+        >
+          {t.encourgement_statement}
+        </h3>
+
+        <a href={"#contact"}>
+          <div class="flex flex-row align-middle">
+            <div
+              class="w-5 h-5 sm:w-6 sm:h-6 inline self-center invisible sm:visible"
+            >
+              <Icon name="mdi:link" color="#0079BF" />
+            </div>
+            <span
+              class="text-sm sm:text-lg mx-auto sm:mx-2 font-medium text-cyan-600"
+            >
+              {t.learn_about_causes_literal}
+            </span>
+          </div>
+        </a>
+
+        <div class="h-2"></div>
+      </div>
+    </div>
+  </Container>
+</div>
 
 <script>
   /* SCRIPT TO HANDLE MOUSE MOVMENTS FOR DRSGGING ACTIVITY VIEW*/
