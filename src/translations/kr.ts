@@ -51,4 +51,5 @@ export const kr: Translation = {
   comapny_brief_title: "",
   name_dummy: "",
   review_dummy: "",
+  why_us_data: [],
 };

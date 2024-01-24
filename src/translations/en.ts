@@ -1,4 +1,4 @@
-import { doc1, doc2, doc3 } from "../constants/dr_links";
+import { product1 } from "../constants/dr_links";
 import type { Translation } from "./../interfaces/base_translation";
 
 export const en: Translation = {
@@ -50,17 +50,17 @@ export const en: Translation = {
     {
       specialty: "Cardialogist",
       name: "Dr. Ali Mohammed",
-      bgClass: doc1,
+      bgClass: product1,
     },
     {
       specialty: "Radialogoist",
       name: "Dr. Sahar Mohammed",
-      bgClass: doc2,
+      bgClass: product1,
     },
     {
       specialty: "Family Health",
       name: "Dr. Aisha Muslim",
-      bgClass: doc3,
+      bgClass: product1,
     },
   ],
   our_products: "Medical Team",
@@ -73,4 +73,5 @@ export const en: Translation = {
   review_dummy:
     "I had a really fun time getting my braces in this clinc, everyone was nice, they took it of clearly nicely and the lady who stood there took care of me all the time. Thaks Media compelx!!!",
   company_brief: "",
+  why_us_data: [],
 };

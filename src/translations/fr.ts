@@ -2,7 +2,7 @@ import type { Translation } from "./../interfaces/base_translation";
 
 // French data
 export const fr: Translation = {
-  locale: "fr",
+  locale: "kr",
   dir: "ltr",
   // Add French translations here based on the "en" structure
   page_title: "Organisation Saya",
@@ -47,4 +47,14 @@ export const fr: Translation = {
   footer_slogan_p2: "meilleur",
   map_location_lit: "Emplacement sur la carte",
   mail_lit: "Courrier",
+  company_brief: "",
+  prodcuts: [],
+  our_products: "",
+  medical_services: "",
+  dental_cleaning: "",
+  dental_cleaing_sub: "",
+  comapny_brief_title: "",
+  name_dummy: "",
+  review_dummy: "",
+  why_us_data: [],
 };
