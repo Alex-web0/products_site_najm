@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import node from "@astrojs/node";
 import react from "@astrojs/react";
-
+// todo: https://youtu.be/Rwga14F9z0k
 // H E L P  R E S
 //
 // DOCS: https://docs.astro.build/en/guides/server-side-rendering/
@@ -14,7 +14,11 @@ import react from "@astrojs/react";
 // SSR CACHE NO EXIST: https://stackoverflow.com/questions/75971534/does-astro-js-fallback-to-ssr-when-cache-is-not-available
 // ssr docs
 
+const LIVE_URL = "https://Alex-web0.github.io";
+
 // https://astro.build/config
 export default defineConfig({
+  site: LIVE_URL,
+  base: "/products_site_najm",
   integrations: [tailwind(), react()],
 });
